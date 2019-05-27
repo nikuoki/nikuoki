@@ -1,0 +1,32 @@
+using System;
+
+namespace sosuu
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("1以上の自然数を入力してください---");   //0は自然数派対策
+
+            int n = int.Parse(Console.ReadLine());
+            int count = 0;
+
+            for (int i = 1; i < n; i++)
+            {
+                if(n % i == 0)
+                {
+                    count++;
+                }
+            }
+
+            if(count > 2)       //1なら1回2以上なら1と自分の2回カウントなので3回以上は全部ほかで割り切れてる
+            {
+                Console.WriteLine("{0}は素数ではありません。",n);
+            }
+            else
+            {
+                Console.WriteLine("{0}は素数です。",n);
+            }
+        }
+    }
+}
