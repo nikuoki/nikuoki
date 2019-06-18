@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+
+namespace ABC120c
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string S = Console.ReadLine();
+            int N = S.Length;
+            var strList = new List<char>();
+            int count = 0;
+            
+            for(int i = 0; i < N; i++)
+            {
+                strList.Add(S[i]);          //SをListに格納（もっとスマートにできそうだけど知らない）
+            }
+
+
+            int k = 0;                      
+            while(k + 2 < strList.Count)    //k+1が文字列からはみ出すまで繰り返す
+            {
+                if(strList[k] != strList[k + 1])          //k番目とk+1番目に違う値が入っていれば消して最初から調べなおし
+                {
+                    strList.RemoveRange(k, k + 1);
+                    k = 0;
+                    count += 2;                           //消した数をカウント
+                }
+                else
+                {
+                    k++;                                  //k番目とk+1番目がおなじならk++
+                }
+                // Console.WriteLine(string.Join("", strList));         //デバッグ用
+            }
+            Console.WriteLine(count);
+        }
+    }
+}
