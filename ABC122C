@@ -30,9 +30,13 @@ namespace ABC122c
                     {
                         count++;
                         flag = 0;
-                    } 
+                    }
+                    else
+                    {
+                        flag = 0;                           //調べた文字がその他ならフラグを折る
+                    }
                 }
-                Console.WriteLine(count);   //うっ出る
+                Console.WriteLine(count);
             }
         }
     }
