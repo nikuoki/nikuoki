@@ -1,0 +1,49 @@
+using System;
+
+namespace ABC121c
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] str = Console.ReadLine().Split(' ');
+            int N = int.Parse(str[0]);
+            int M = int.Parse(str[1]);
+            int[] A = new int[N];
+            int[] An = new int[N];
+            int[] B = new int[N];
+            int mcount = 0;         //買った本数
+            int total = 0;          //合計金額
+
+            for (int i = 0; i < N; i++)
+            {
+                string[] str0 = Console.ReadLine().Split(' ');      //二次配列のソートができないので
+                A[i] = int.Parse(str0[0]);                          //AとBの対応をとるためのAnくん出産
+                An[i] = A[i];
+                B[i] = int.Parse(str0[1]);
+            }
+
+            Array.Sort(A);      //そうと
+
+            int n = 0;                              //初期値
+            int num = B[Array.IndexOf(An, A[n])];   //初期値
+
+            while (true)                            //買ったジュースがM本になるまで1本ずつ買い続ける
+            { 
+                num --;                             
+                mcount ++;
+                total += A[n]; 
+
+                if (num < 1)
+                {
+                    n++;
+                    num = B[Array.IndexOf(An, A[n])];       //32bitまでしか通らんわ
+                }
+
+                if (mcount == M) break;
+            }
+
+            Console.WriteLine(total);
+        }
+    }
+}
