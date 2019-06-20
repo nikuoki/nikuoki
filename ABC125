@@ -1,0 +1,57 @@
+using System;
+using System.Linq;
+
+namespace ABC125c
+{
+    class Program
+    {
+        static int check (int[] A , int n)      //メソッドくん使ってみただけ
+        {
+            int count = 0;
+
+            for(int i = 0;i< A.Length; i++)     
+            {
+                if (A[i] % n != 0) count++;     //Aの要素それぞれをnで割り、あまりが出た回数をカウントして返す
+            }
+            return count;
+        }
+
+        static void Main(string[] args)
+        {
+            int N = int.Parse(Console.ReadLine());
+            string[] str = Console.ReadLine().Split(' ');
+            int[] A = new int[str.Length];
+            int answer = 1;
+
+            for(int i = 0; i < str.Length; i++)
+            {
+                A[i] = int.Parse(str[i]);
+            }
+
+
+            int max = A.Max();
+            int total = check(A , max);             //Aの最大値が答えでなければ次はAの半分以下なので計算省略できそうだからやった
+            if (total <= 1)
+            {
+                answer = max;
+            }
+            else
+            {
+
+
+                for (int i = max / 2; i > 0; i--)   //Aの最大値の半分（切り捨て）から1までcheckに送る
+                {
+                    total = check(A, i);
+                    if (total <= 1)                 //カウント1の時はそいつを書き換えれば最大になる
+                    {
+                        answer = i;
+                        break;
+                    }
+                }
+            }
+
+            Console.WriteLine(answer);              //うっ出る
+
+        }
+    }
+}
